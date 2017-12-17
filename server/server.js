@@ -19,6 +19,15 @@ io.on(('connection') , (socket) => {
     console.log('Disconnected to the server');
   });
 
+  socket.on('createMessage', (message) => {
+    console.log("Message : ", JSON.stringify(message ,undefined ,2));
+  })
+
+  socket.emit('newMessage', {
+    from: "jatin@gmail.com",
+    createdAt: "jatin1324",
+    text: "my first email"
+  });
 });
 
 
