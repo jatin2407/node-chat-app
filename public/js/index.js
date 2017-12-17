@@ -9,3 +9,7 @@ socket.on('disconnect', function () {
 socket.on('newMessage', function(message) {
   console.log("new emit event",message);
 });
+
+socket.on('newJoin', function(message) {
+  console.log(message);
+});
