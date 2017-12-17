@@ -15,19 +15,20 @@ app.use(express.static(publicPath));
 io.on(('connection') , (socket) => {
   console.log('New user Connected');
 
+  socket.on('createMessage', (message) => {
+    console.log("Message : ", JSON.stringify(message ,undefined ,2));
+
+    io.emit('newMessage',{
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
+  });
+
   socket.on(('disconnect') , () => {
     console.log('Disconnected to the server');
   });
 
-  socket.on('createMessage', (message) => {
-    console.log("Message : ", JSON.stringify(message ,undefined ,2));
-  })
-
-  socket.emit('newMessage', {
-    from: "jatin@gmail.com",
-    createdAt: "jatin1324",
-    text: "my first email"
-  });
 });
 
 
